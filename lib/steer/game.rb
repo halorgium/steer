@@ -2,6 +2,8 @@ require 'set'
 
 module Steer
   class Game
+    TOTAL_TURNS = 3
+    
     def player_set
       @player_set ||= Set.new
     end
@@ -11,10 +13,14 @@ module Steer
     end
     
     def join(player_name)
-      if player_set.add?(Player.new(player_name))
-        "#{player_name} joined the game"
-      else
-        "#{player_name} is already in the game"
+      player_set.add?(Player.new(player_name))
+    end
+    
+    def next_player(&block)
+      1.upto(TOTAL_TURNS) do |turn|
+        players.each do |player|
+          yield player
+        end
       end
     end
   end
