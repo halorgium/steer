@@ -1,6 +1,6 @@
 module Steer
   module Slots
-    class ThreeOfAKind < Base
+    class FourOfAKind < Base
       register_in :bottom, "4 of a kind"
       
       def matches?
