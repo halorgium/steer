@@ -7,4 +7,5 @@ require 'steer/turn'
 require 'steer/dice'
 
 require 'steer/slots/base'
+require 'steer/slots/numbers'
 require 'steer/slots/chance'
