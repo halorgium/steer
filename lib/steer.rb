@@ -11,4 +11,5 @@ require 'steer/slots/numbers'
 
 require 'steer/slots/three_of_a_kind'
 require 'steer/slots/four_of_a_kind'
+require 'steer/slots/full_house'
 require 'steer/slots/chance'
