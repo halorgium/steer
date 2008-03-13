@@ -32,7 +32,6 @@ module Steer
     end
     
     def self.valid?(name)
-      puts "names: #{names.inspect}"
       names.include?(name)
     end
   end
