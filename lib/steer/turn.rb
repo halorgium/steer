@@ -41,7 +41,7 @@ module Steer
       @dice_to_reroll.each do |n|
         @dice[n - 1].roll
       end
-      @dice_to_reroll = Set.new
+      @dice_to_reroll.clear
     end
     
     def use_as(slot_name)
