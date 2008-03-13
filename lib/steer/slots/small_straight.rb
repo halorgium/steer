@@ -11,7 +11,7 @@ module Steer
       end
       
       def points
-        30
+        mathces? ? 30 : 0
       end
     end
   end

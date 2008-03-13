@@ -10,10 +10,6 @@ module Steer
       end
       attr_reader :turn
       
-      def matches?
-        raise NotImplemented, "Implement #{self.class}#matches?"
-      end
-      
       def points
         raise NotImplemented, "Implement #{self.class}#points"
       end

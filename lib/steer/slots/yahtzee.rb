@@ -8,7 +8,7 @@ module Steer
       end
       
       def points
-        50
+        matches? ? 50 : 0
       end
     end
   end

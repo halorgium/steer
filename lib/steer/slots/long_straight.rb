@@ -11,7 +11,7 @@ module Steer
       end
       
       def points
-        40
+        matches? ? 40 : 0
       end
     end
   end

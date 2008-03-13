@@ -8,7 +8,7 @@ module Steer
       end
       
       def points
-        turn.dice_total
+        matches? ? turn.dice_total : 0
       end
     end
   end

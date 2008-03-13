@@ -2,9 +2,6 @@ module Steer
   module Slots
     class Numbers < Base
       class << self; attr_accessor :dice_value; end
-      def matches?
-        true
-      end
       
       def points
         total = 0

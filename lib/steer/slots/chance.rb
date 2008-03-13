@@ -3,10 +3,6 @@ module Steer
     class Chance < Base
       register_in :bottom, :chance
       
-      def matches?
-        true
-      end
-      
       def points
         turn.dice_total
       end
