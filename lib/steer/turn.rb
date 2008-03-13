@@ -10,7 +10,7 @@ module Steer
       @player, @number, @rolls = player, number, 0
       @dice = []
       @dice_to_reroll = Set.new
-      6.times do |i|
+      5.times do |i|
         @dice_to_reroll << i
         @dice << Dice.new
       end
@@ -19,7 +19,7 @@ module Steer
     
     def reroll_at(position)
       raise RerollNotAllowed, "You have already rolled the dice #{@rolls} times" unless allowed_reroll?
-      if (1..6).include?(position)
+      if (1..@dice.size).include?(position)
         @dice_to_reroll << position
       else
         false

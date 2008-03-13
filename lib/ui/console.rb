@@ -42,10 +42,11 @@ module Ui
           say "Roll the dice!"
           get_character # wait for the user
           turn.roll
-          say "The dice are currently #{turn.dice.join(', ')}"
           if turn.allowed_reroll?
+            say "The dice are currently #{turn.dice.join(', ')}"
+            say "Your options are #{player.slot_options.join(', ')}"
             say "You should choose some dice to roll (if you want)"
-            say "Choose a number from 1 to 6"
+            say "Choose a number from 1 to 5"
             until (char = get_character) == 13
               position = char.chr.to_i
               if turn.reroll_at(position)
