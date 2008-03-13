@@ -2,6 +2,8 @@ require 'set'
 
 module Steer
   class Turn
+    class RerollNotAllowed < StandardError; end
+    
     MAX_ROLLS = 3
     
     def initialize(player, number)
@@ -16,16 +18,12 @@ module Steer
     attr_reader :dice
     
     def reroll_at(position)
+      raise RerollNotAllowed, "You have already rolled the dice #{@rolls} times" unless allowed_reroll?
       if (1..6).include?(position)
         @dice_to_reroll << position
       else
         false
       end
-    end
-    
-    def reroll_dice(&block)
-      return unless allowed_reroll?
-      yield self
     end
     
     def allowed_reroll?

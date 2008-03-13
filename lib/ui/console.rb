@@ -43,13 +43,13 @@ module Ui
           get_character # wait for the user
           turn.roll
           say "The dice are currently #{turn.dice.join(', ')}"
-          turn.reroll_dice do |t|
+          if turn.allowed_reroll?
             say "You should choose some dice to roll (if you want)"
             say "Choose a number from 1 to 6"
             until (char = get_character) == 13
               position = char.chr.to_i
-              if t.reroll_at(position)
-                say "Rerolling dice #{t.dice_to_reroll.join(', ')}"
+              if turn.reroll_at(position)
+                say "Rerolling dice #{turn.dice_to_reroll.join(', ')}"
               else
                 say "Couldn't reroll dice number #{position}"
               end
