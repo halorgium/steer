@@ -19,7 +19,7 @@ module Steer
     
     def reroll_at(position)
       raise RerollNotAllowed, "You have already rolled the dice #{@rolls} times" unless allowed_reroll?
-      if (1..@dice.size).include?(position)
+      if (1..dice.size).include?(position)
         @dice_to_reroll << position
       else
         false
@@ -37,7 +37,7 @@ module Steer
     def roll
       @rolls += 1
       @dice_to_reroll.each do |n|
-        @dice[n - 1].roll
+        dice[n - 1].roll
       end
       @dice_to_reroll.clear
     end
@@ -47,7 +47,24 @@ module Steer
     end 
     
     def dice_values
-      @dice.map {|d| d.value}
+      dice.map {|d| d.value}
+    end
+    
+    def dice_total
+      total = 0
+      dice_values.each do |n|
+        total += n
+      end
+      total
+    end
+    
+    def dice_stats
+      stats = {}
+      dice_values.each do |n|
+        stats[n] ||= 0
+        stats[n] += 1
+      end
+      stats
     end
     
     def dice_to_reroll

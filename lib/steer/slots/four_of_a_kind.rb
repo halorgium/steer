@@ -1,10 +1,10 @@
 module Steer
   module Slots
-    class Chance < Base
-      register_in :bottom, :chance
+    class ThreeOfAKind < Base
+      register_in :bottom, "4 of a kind"
       
       def matches?
-        true
+        turn.dice_stats.values.include?(4)
       end
       
       def points
