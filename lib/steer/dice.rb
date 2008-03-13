@@ -4,7 +4,7 @@ module Steer
     
     def roll
       puts "Rolling dice..."
-      @value = (rand * 5).to_i + 1
+      @value = (rand * 6).to_i + 1
     end
     
     def to_s
