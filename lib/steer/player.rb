@@ -1,5 +1,7 @@
 module Steer
   class Player
+    class SlotTaken < StandardError; end
+    
     def initialize(name)
       @name = name
     end
@@ -21,12 +23,37 @@ module Steer
       turns.last
     end
     
-    def allocate(slot_type, turn)
-      
+    def allocate(slot_name, turn)
+      if slot_free?(slot_name)
+        slot = Slots.instance_for(slot_name, turn)
+        slots[slot_name] = slot
+      else
+        raise SlotTaken, "#{slot_name.inspect} has already been used"
+      end
     end
     
     def points
-      100
+      total = 0
+      slots.values.each do |slot|
+        total += slot.points
+      end
+      total
+    end
+    
+    def slot_free?(name)
+      !slot_names.include?(name)
+    end
+    
+    def slot_options
+      Slots.names - slot_names
+    end
+    
+    def slot_names
+      slots.keys
+    end
+    
+    def slots
+      @slots ||= {}
     end
     
     def eql?(other)

@@ -2,8 +2,6 @@ require 'set'
 
 module Steer
   class Game
-    TOTAL_TURNS = 3
-    
     def player_set
       @player_set ||= Set.new
     end
@@ -17,7 +15,7 @@ module Steer
     end
     
     def next_player(&block)
-      1.upto(TOTAL_TURNS) do |turn|
+      1.upto(Slots.count) do |turn|
         players.each do |player|
           yield player
         end

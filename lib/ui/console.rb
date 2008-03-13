@@ -52,8 +52,12 @@ module Ui
         say "Time to choose how you want to use your dice!"
         turn = player.latest_turn
         say "Your dice are #{turn.dice.join(', ')}"
-        get_character # wait for the user
-        turn.use_as :chance
+        say "Your options are #{player.slot_options.join(', ')}"
+        @question = HighLine::Question.new("Choose: ", String) do |q|
+          q.in = player.slot_options
+        end
+        choice = ask(nil)
+        turn.use_as choice
         say "You currently have #{player.points} points!"
       end
       say "Game over!"

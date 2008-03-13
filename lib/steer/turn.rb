@@ -31,8 +31,8 @@ module Steer
       @dice = [1, 3, 3, 4, 6]
     end
     
-    def use_as(slot_type)
-      @player.allocate(slot_type, self)
+    def use_as(slot_name)
+      @player.allocate(slot_name.to_s, self)
     end
   end
 end
