@@ -19,7 +19,7 @@ module Steer
       
       it "should match [4,2,3,5,4]" do
         turn = Turn.new(nil, nil)
-        turn.should_receive(:dice_values).and_return([1,4,3,5,6])
+        turn.should_receive(:dice_values).and_return([4,2,3,5,4])
         @slot = SmallStraight.new(turn)
         @slot.should be_matches
       end
