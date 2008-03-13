@@ -5,8 +5,7 @@ module Steer
     
     def self.add(name, section, klass)
       unless names.include?(name)
-        collection[name] = klass
-        sections[section] << name
+        sections[section] << [name, klass]
       else
         raise NameTaken, "#{name.inspect} is already taken"
       end
@@ -14,18 +13,26 @@ module Steer
     
     def self.instance_for(name, turn)
       if valid?(name)
-        collection[name].new(turn)
+        klass_for(name).new(turn)
       else
         raise NameNotFound, "#{name.inspect} isn't valid"
       end
     end
     
+    def self.klass_for(name_to_find)
+      collection.find do |(name, klass)|
+        return klass if name == name_to_find
+      end
+    end
+    
     def self.count
-      collection.size
+      names.size
     end
     
     def self.names
-      sections[:top] + sections[:bottom]
+      collection.map do |name,klass|
+        name
+      end
     end
     
     def self.valid?(name)
@@ -33,7 +40,11 @@ module Steer
     end
     
     def self.collection
-      @collection ||= {}
+      collection = []
+      (sections[:top] + sections[:bottom]).each do |name,klass|
+        collection << [name, klass]
+      end
+      collection
     end
     
     def self.sections
