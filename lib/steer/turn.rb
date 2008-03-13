@@ -4,9 +4,15 @@ module Steer
     
     def initialize(player, number)
       @player, @number, @rolls = player, number, 0
+      @dice = []
+      @dice_to_reroll = []
+      6.times do |i|
+        @dice_to_reroll << i
+        @dice << Dice.new
+      end
     end
     attr_reader :dice
-    attr_accessor :dice_to_reroll
+    attr_writer :dice_to_reroll
     
     def reroll_dice(&block)
       return unless allowed_reroll?
@@ -18,21 +24,23 @@ module Steer
     end
     
     def needs_rolling?
-      dice.nil? || reroll_requested?
-    end
-    
-    def reroll_requested?
-      dice_to_reroll && dice_to_reroll.any?
+      @dice_to_reroll.any?
     end
     
     def roll
       @rolls += 1
-      @dice_to_reroll = nil
-      @dice = [1, 3, 3, 4, 6]
+      @dice_to_reroll.each do |n|
+        @dice[n].roll
+      end
+      @dice_to_reroll = []
     end
     
     def use_as(slot_name)
       @player.allocate(slot_name.to_s, self)
+    end 
+    
+    def dice_values
+      @dice.map {|d| d.value}
     end
   end
 end

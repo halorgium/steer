@@ -9,7 +9,7 @@ module Steer
       
       def points
         total = 0
-        turn.dice.each do |n|
+        turn.dice_values.each do |n|
           total += n
         end
         total
