@@ -18,7 +18,7 @@ module Steer
     1.upto(6) do |dice_value|
       klass = Class.new(Numbers)
       klass.dice_value = dice_value
-      klass.register_as "#{dice_value}s"
+      klass.register_in :top, "#{dice_value}s"
     end
   end
 end

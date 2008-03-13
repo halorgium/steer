@@ -1,8 +1,8 @@
 module Steer
   module Slots
     class Base
-      def self.register_as(name)
-        Slots.add(name.to_s, self)
+      def self.register_in(section, name)
+        Slots.add(name.to_s, section, self)
       end
       
       def initialize(turn)

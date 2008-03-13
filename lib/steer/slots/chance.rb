@@ -1,7 +1,7 @@
 module Steer
   module Slots
     class Chance < Base
-      register_as :chance
+      register_in :bottom, :chance
       
       def matches?
         true
