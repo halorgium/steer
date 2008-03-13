@@ -12,7 +12,8 @@ module Steer
     
     it "should allow players to be join" do
       @game.join("John Smith")
-      @game.players.should == [Player.new("John Smith")]
+      @game.players.size.should == 1
+      @game.players.first.name.should == "John Smith"
     end
   end
 end
