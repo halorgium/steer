@@ -27,7 +27,7 @@ module Steer
       it "should not match [4,1,3,6,3]" do
         turn = Turn.new(nil, nil)
         turn.should_receive(:dice_values).and_return([4,1,3,6,3])
-        @slot = FullHouse.new(turn)
+        @slot = SmallStraight.new(turn)
         @slot.should_not be_matches
       end
     end
